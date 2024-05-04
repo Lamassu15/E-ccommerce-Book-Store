@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Bazo Book store</h1>
+    <p>Manage your products and categories</p>
+</div>
+
+
+@foreach (var item in Model)
+{
+    <form method="post"
+        asp-controller="ShoppigCarts"
+            asp-action="Create"
+            asp-route-productId="@item.Id"
+            class="d-inline">
+            <div class="card" style="width: 18rem;">
+                <img src="@item.ImageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">@item.Author</p>
+                    <p class="card-text">@item.Price</p>
+                    <button type="submit" class="btn btn-primary">Add to cart</button>
+                </div>
+            </div>
+    </form>
+}
